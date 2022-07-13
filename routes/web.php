@@ -5,6 +5,7 @@ use App\Http\Controllers\TesterController as Test;
 use Illuminate\Http\Request;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\MVCTestController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,4 +97,8 @@ Route::name('profile.')->group(function() {
 
 Route::get('/test-subgroup-with-name-into-dot', function() {
     return redirect()->route('profile.info');
+});
+
+Route::get('/new-profile/{user}', function (User $user){
+    return $user->email;
 });
