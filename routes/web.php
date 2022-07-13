@@ -82,3 +82,18 @@ Route::prefix('admin')->group(function() {
         return 'admin/profile';
     });
 });
+
+Route::name('profile.')->group(function() {
+    Route::prefix('/profile')->group(function() {
+        Route::get('/info', function() {
+            return 'profile/info';
+        })->name('info');
+        Route::get('/setpass', function() {
+            return 'profile/setpass';
+        })->name('setpass');
+    });    
+});
+
+Route::get('/test-subgroup-with-name-into-dot', function() {
+    return redirect()->route('profile.info');
+});
