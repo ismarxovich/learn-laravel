@@ -40,6 +40,10 @@ Route::permanentRedirect('/redirect', '/redirectComplete', 301);
 
 Route::any('/redirectComplete', function () {
     return 'redirectComplete';
+})->name('redirectAll');
+
+Route::any('/testAll', function () {
+    return redirect()->route('redirectAll', ['get_test' => 'value']);
 });
 
 Route::view('/welcome', 'welcome');
