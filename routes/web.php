@@ -105,3 +105,7 @@ Route::get('/new-profile/{user}', function (User $user) {
 });
 
 Route::get('/controller-with-type/{user}', [UserProfileController::class, 'testHandler']);
+
+Route::get('/new-profile2/{user:email}', function (User $user) {
+    return $user->email;
+});
