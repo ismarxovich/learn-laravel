@@ -63,3 +63,9 @@ Route::get('/picture/{id?}', function ($id = null) {
 });
 
 
+Route::domain('test.localhost')->group(function () {
+    Route::get('user', function () {
+        return "test subdomain";
+    });
+});
+
