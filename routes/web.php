@@ -69,10 +69,16 @@ Route::domain('test.localhost')->group(function () {
     });
 });
 
+Route::domain('test.localhost')->group(function() {
+    Route::prefix('admin')->group(function() {
+        Route::get('/profile', function() {
+            return 'test.localhost/admin/profile';
+        });
+    });
+});
 
 Route::prefix('admin')->group(function() {
     Route::get('/profile', function() {
         return 'admin/profile';
     });
 });
-
