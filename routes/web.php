@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\MVCTestController;
 use App\Models\User;
+use App\Http\Controllers\UserProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,11 +53,11 @@ Route::view('/welcome', 'welcome');
 Route::any('/mvc', [MVCTestController::class, 'getData']);
 
 Route::get('/user/{id}', function ($id) {
-    return 'User Profile '.$id;
+    return 'User Profile ' . $id;
 });
 
 Route::get('/picture/{id?}', function ($id = null) {
-    if($id === null) {
+    if ($id === null) {
         return view('pictureEmpty');
     } else {
         return view('picture', ['picture' => $id]);
@@ -70,35 +71,37 @@ Route::domain('test.localhost')->group(function () {
     });
 });
 
-Route::domain('test.localhost')->group(function() {
-    Route::prefix('admin')->group(function() {
-        Route::get('/profile', function() {
+Route::domain('test.localhost')->group(function () {
+    Route::prefix('admin')->group(function () {
+        Route::get('/profile', function () {
             return 'test.localhost/admin/profile';
         });
     });
 });
 
-Route::prefix('admin')->group(function() {
-    Route::get('/profile', function() {
+Route::prefix('admin')->group(function () {
+    Route::get('/profile', function () {
         return 'admin/profile';
     });
 });
 
-Route::name('profile.')->group(function() {
-    Route::prefix('/profile')->group(function() {
-        Route::get('/info', function() {
+Route::name('profile.')->group(function () {
+    Route::prefix('/profile')->group(function () {
+        Route::get('/info', function () {
             return 'profile/info';
         })->name('info');
-        Route::get('/setpass', function() {
+        Route::get('/setpass', function () {
             return 'profile/setpass';
         })->name('setpass');
-    });    
+    });
 });
 
-Route::get('/test-subgroup-with-name-into-dot', function() {
+Route::get('/test-subgroup-with-name-into-dot', function () {
     return redirect()->route('profile.info');
 });
 
-Route::get('/new-profile/{user}', function (User $user){
+Route::get('/new-profile/{user}', function (User $user) {
     return $user->email;
 });
+
+Route::get('/controller-with-type/{user}', [UserProfileController::class, 'testHandler']);
