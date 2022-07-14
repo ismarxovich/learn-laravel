@@ -109,3 +109,11 @@ Route::get('/controller-with-type/{user}', [UserProfileController::class, 'testH
 Route::get('/new-profile2/{user:email}', function (User $user) {
     return $user->email;
 });
+
+Route::middleware(['throttle:test'])->group(function () {
+    Route::get('/test2', function () {
+        return 'hello and bye!';
+    });
+});
+
+
