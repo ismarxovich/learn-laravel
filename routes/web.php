@@ -48,7 +48,12 @@ Route::any('/testAll', function () {
     return redirect()->route('redirectAll', ['get_test' => 'value']);
 });
 
-Route::view('/welcome', 'welcome');
+Route::view('/welcome', 'welcome')->name('welcome');
+
+
+Route::any('/secret-route', function () {
+    return 'this is secret route!';
+})->name('/secret_route');
 
 Route::any('/mvc', [MVCTestController::class, 'getData']);
 
