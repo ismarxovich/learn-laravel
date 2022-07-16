@@ -17,8 +17,8 @@ class AfterMiddleware
     public function handle(Request $request, Closure $next)
     {
         $response = $next($request);
-        
-        $response->cookie('testMiddleware', 'TESTVALUE', 120);
+
+        $response->cookie('testMiddleware123', 'FORROUTEWELCOME', 120);
 
         return $response;
     }

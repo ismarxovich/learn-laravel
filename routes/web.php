@@ -19,10 +19,16 @@ use App\Http\Controllers\UserProfileController;
 |
 */
 
+
+
+
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware('after');
 
+Route::get('/', function () {
+    return view('welcome');
+})->withoutMiddleware(['after']);
 
 Route::match(['get', 'post'], '/test', function () {
     return 'match';
